@@ -107,6 +107,7 @@ class  assignment():
         file=json.dumps(self.assign)
         print(file)
         print(type(file))
+        file.to_csv("data.csv", index=False)
 
 
     def __init__(self):
