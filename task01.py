@@ -60,7 +60,7 @@ Enter in the scores for 10 students for Assignment 2:
 10: _12_
 
 """
-
+import csv
 import json
 class  assignment():
     assign={}
@@ -96,7 +96,7 @@ class  assignment():
 
         print(f"Enter in the scores for {self.AssignmentValue[a]} students for {self.AssignmentName[a]}: ")
         for i in range(self.AssignmentValue[a]):
-            b=int(input(f"{i+1}: "))
+            b=float(input(f"{i+1}: "))
             self.assign[self.AssignmentName[a]][i+1]=b
 
         print(self.assign)
@@ -104,10 +104,16 @@ class  assignment():
         self.__init__()
 
     def writeData(self):
-        file=json.dumps(self.assign)
+        title=self.AssignmentName
+        file=[self.assign]
+        with open('data.csv', 'w') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=title)
+            writer.writeheader()
+            writer.writerows(file)
+        """file=json.dumps(self.assign)
         print(file)
         print(type(file))
-        file.to_csv("data.csv", index=False)
+        file.to_csv("data.csv", index=False)"""
 
 
     def __init__(self):
