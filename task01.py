@@ -91,17 +91,23 @@ class  assignment():
             
 
     def assignmentScore(self):
-        print(f"Current Assignment ID you can search : {self.ID}")
-        a=int(input("Enter in the assignment ID: "))  #0
+        if self.ID1!=0:
+            print(f"Current Assignment ID you can search : {self.ID}")
+            a=int(input("Enter in the assignment ID: "))  #0
 
-        print(f"Enter in the scores for {self.AssignmentValue[a]} students for {self.AssignmentName[a]}: ")
-        for i in range(self.AssignmentValue[a]):
-            b=float(input(f"{i+1}: "))
-            self.assign[self.AssignmentName[a]][i+1]=b
+            print(f"Enter in the scores for {self.AssignmentValue[a]} students for {self.AssignmentName[a]}: ")
+            for i in range(self.AssignmentValue[a]):
+                b=float(input(f"{i+1}: "))
+                self.assign[self.AssignmentName[a]][i+1]=b
 
-        print(self.assign)
-        print()
-        self.__init__()
+            print(self.assign)
+            print()
+            self.__init__()
+        else:
+            print("Assignments are empty\n")
+            self.__init__()
+
+
 
     def writeData(self):
         title=self.AssignmentName
@@ -110,6 +116,7 @@ class  assignment():
             writer = csv.DictWriter(csvfile, fieldnames=title)
             writer.writeheader()
             writer.writerows(file)
+        
     
         """file=json.dumps(self.assign)
         print(file)
